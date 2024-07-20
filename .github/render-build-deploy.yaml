@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - production
   pull_request:
     branches:
       - main
-      - production
 
 jobs:
   build:
@@ -29,7 +27,7 @@ jobs:
           echo "::add-path::$HOME/.local/bin"
 
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
 
       - name: Run tests
         run: poetry run pytest
@@ -53,7 +51,7 @@ jobs:
           echo "::add-path::$HOME/.local/bin"
 
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
 
       - name: Deploy to Render
         env:
